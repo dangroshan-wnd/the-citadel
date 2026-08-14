@@ -1,0 +1,90 @@
+version: 2
+
+models:
+  - name: player_scoring_by_game
+    description: >
+      Player-level PFR box scores with standard fantasy scoring applied.
+      One row per player appearance in a scheduled game.
+    columns:
+      - name: season
+        description: NFL season year from the schedule.
+      - name: week_label
+        description: Raw PFR week label, including playoff round names.
+      - name: week_num
+        description: Integer regular-season week number; null for playoff games.
+      - name: is_regular_season
+        description: True when week_num is a regular-season week (1–18).
+      - name: is_home_team
+        description: True when the player's team was the home team for the game.
+      - name: game_date
+        description: Game date from the box score.
+      - name: player_name
+        description: Player display name from the PFR offense table.
+      - name: player_join_key
+        description: Normalized join key linking PFR and Underdog player names.
+      - name: player_position_name
+        description: Underdog position name for the player.
+      - name: player_team_abbreviation
+        description: Canonical abbreviation for the NFL team the player represented in this game.
+      - name: player_team_name
+        description: Full canonical name of the NFL team the player represented in this game.
+      - name: player_team_name_short
+        description: Short canonical name of the NFL team the player represented in this game.
+      - name: opponent_team_abbreviation
+        description: Canonical abbreviation for the player's opponent in this game.
+      - name: opponent_team_name
+        description: Full canonical name of the player's opponent in this game.
+      - name: opponent_team_name_short
+        description: Short canonical name of the player's opponent in this game.
+      - name: pass_completions
+        description: Pass completions.
+      - name: pass_attempts
+        description: Pass attempts.
+      - name: pass_yards
+        description: Passing yards.
+      - name: pass_touchdowns
+        description: Passing touchdowns.
+      - name: pass_interceptions
+        description: Interceptions thrown.
+      - name: rush_attempts
+        description: Rushing attempts.
+      - name: rush_yards
+        description: Rushing yards.
+      - name: rush_touchdowns
+        description: Rushing touchdowns.
+      - name: receiving_targets
+        description: Receiving targets.
+      - name: receptions
+        description: Receptions.
+      - name: receiving_yards
+        description: Receiving yards.
+      - name: receiving_touchdowns
+        description: Receiving touchdowns.
+      - name: scrimmage_yards
+        description: Rushing yards plus receiving yards.
+      - name: scrimmage_touchdowns
+        description: Rushing touchdowns plus receiving touchdowns.
+      - name: fumbles
+        description: Fumbles.
+      - name: fumbles_lost
+        description: Fumbles lost.
+      - name: std_scoring_points_pass_yds
+        description: Fantasy points from passing yards (0.04 per yard).
+      - name: std_scoring_points_pass_td
+        description: Fantasy points from passing touchdowns (4 per TD).
+      - name: std_scoring_points_pass_int
+        description: Underdog Best Ball fantasy points from interceptions thrown (-1 per INT).
+      - name: std_scoring_points_rush_yds
+        description: Fantasy points from rushing yards (0.1 per yard).
+      - name: std_scoring_points_rush_td
+        description: Fantasy points from rushing touchdowns (6 per TD).
+      - name: std_scoring_points_rec
+        description: Fantasy points from receptions (0.5 per reception).
+      - name: std_scoring_points_rec_yds
+        description: Fantasy points from receiving yards (0.1 per yard).
+      - name: std_scoring_points_rec_td
+        description: Fantasy points from receiving touchdowns (6 per TD).
+      - name: std_scoring_points_fumbles_lost
+        description: Fantasy points from fumbles lost (-2 per fumble lost).
+      - name: std_scoring_points_total
+        description: Total standard-scoring fantasy points for the game.

@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: season_draft_selections_total
+    description: >
+      Personal season-long draft selection stats for DGRO18 in 12-team full-season
+      slates with projection ADP. One row per player per slate season.
+    config:
+      tags: ['lightdash']
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - slate_season
+            - player_name
+    columns:
+      - name: username
+        description: Underdog username for the drafter.
+      - name: slate_season
+        description: Season year for the full-season slate.
+      - name: is_full_season_slate
+        description: True when the slate is a full-season slate.
+      - name: entry_count
+        description: Number of entries in the draft (filtered to 12).
+      - name: player_name
+        description: Drafted player name from Underdog.
+      - name: position_name
+        description: Drafted player position.
+      - name: team_name
+        description: NFL team name for the drafted player.
+      - name: final_adp
+        description: Projection ADP from the most recent draft of this player in the season.
+      - name: personal_adp
+        description: Average pick number across drafts where this player was selected.
+      - name: personal_avg_pick_round_number
+        description: Average pick round number across drafts where this player was selected.
+      - name: drafts_selected
+        description: Distinct drafts in which this player was selected.
+      - name: total_drafts
+        description: Distinct qualifying drafts entered by the user in the slate season.
+      - name: exposure_percentage
+        data_type: numeric
+        description: drafts_selected divided by total_drafts, rounded to 4 decimals.
+        config:
+          meta:
+            metrics:
+              player_exposure:
+                type: average
+                label: Player Exposure
+                description: Percentage of qualifying drafts in which the player was selected.
+                format: '0.00%'
+                tags: ['agent']
+      - name: exposure_group
+        description: Reference letter grade identifying the player's target exposure group.
+      - name: exposure_floor
+        description: Minimum target exposure rate for the player's exposure group, joined from the exposure target seeds by season and player.
+      - name: exposure_gap
+        description: >
+          Actual exposure percentage minus the exposure floor. Negative values
+          indicate the player is under target; positive values indicate the
+          player is over target.

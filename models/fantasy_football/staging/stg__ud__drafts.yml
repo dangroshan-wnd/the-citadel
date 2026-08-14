@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: stg__ud__drafts
+    description: Staged Underdog drafts from base. One row per draft_id.
+    columns:
+      - name: draft_id
+        description: Underdog draft UUID.
+        data_tests:
+          - unique
+          - not_null
+      - name: clock
+        description: Pick clock length in seconds.
+      - name: contest_style_id
+        description: Underdog contest style UUID.
+      - name: draft_at
+        description: Draft start timestamp (UTC).
+      - name: draft_type
+        description: Draft speed type (e.g. slow, fast).
+      - name: entry_count
+        description: Number of entries in the draft.
+      - name: entry_role
+        description: User entry role in the draft, if applicable.
+      - name: entry_style_id
+        description: Underdog entry style UUID.
+      - name: mode
+        description: Draft mode (e.g. regular).
+      - name: salary_budget
+        description: Salary cap budget for the draft.
+      - name: slate_id
+        description: Underdog slate UUID.
+      - name: source
+        description: Draft source (e.g. sit_and_go).
+      - name: status
+        description: Draft lifecycle status (e.g. settled).
+      - name: title
+        description: Optional draft title.
+      - name: user_draft_entry_payout
+        description: Payout amount for the authenticated user's entry.
+      - name: user_draft_entry_payout_text
+        description: Display text for the user's payout, if provided.
+      - name: user_draft_entry_place
+        description: Finish place for the authenticated user's entry.
+      - name: user_draft_entry_points
+        description: Total points for the authenticated user's entry.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

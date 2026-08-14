@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: base__seed__player_exposure_targets
+    description: >
+      Player-level exposure group targets from the player exposure targets
+      seed. One row per player.
+    columns:
+      - name: exposure_season
+        description: Season of the exposure target.
+        data_tests:
+          - not_null
+      - name: player_id
+        description: Stable Underdog player identifier.
+        data_tests:
+          - unique
+          - not_null
+      - name: player_name
+        description: Player display name.
+        data_tests:
+          - not_null
+      - name: exposure_group
+        description: Letter grade identifying the player's target exposure group.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('base__seed__exposure_target_ranges')
+              field: exposure_group

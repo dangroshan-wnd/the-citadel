@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: career_page_snapshots
+    description: Complete company career-page observations written by the ingestion flow.
+    schema: landing
+    tables:
+      - name: snapshots
+        identifier: career_page_snapshots
+        description: One versioned JSONB inventory per company and logical collection run.
+        columns:
+          - name: snapshot_id
+            description: UUID identity of the immutable stored observation.
+            data_tests:
+              - not_null
+              - unique
+          - name: company_name
+            description: Canonical V1 company identity from companies.yml.
+            data_tests:
+              - not_null
+          - name: captured_at
+            description: Shared aware UTC timestamp established before company task execution.
+            data_tests:
+              - not_null
+          - name: source_url
+            description: Canonical public source collected for this observation.
+            data_tests:
+              - not_null
+          - name: job_count
+            description: Number of normalized jobs represented in payload.jobs.
+            data_tests:
+              - not_null
+          - name: payload
+            description: Versioned JSONB envelope containing source metadata and normalized jobs.
+            data_tests:
+              - not_null
+          - name: collection_key
+            description: Prefect flow-run-derived idempotency key.
+            data_tests:
+              - not_null

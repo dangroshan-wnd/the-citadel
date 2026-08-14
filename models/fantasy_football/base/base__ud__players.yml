@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: base__ud__players
+    description: Underdog players from landing. One row per player per slate.
+    columns:
+      - name: id
+        description: Underdog player UUID.
+      - name: action_path
+        description: Action path URL segment for the player.
+      - name: country
+        description: Player country code.
+      - name: dark_image_url
+        description: Player image URL for dark mode.
+      - name: first_name
+        description: Player first name.
+      - name: image_url
+        description: Player image URL.
+      - name: jersey_number
+        description: Jersey number as returned by the API.
+      - name: last_name
+        description: Player last name.
+      - name: light_image_url
+        description: Player image URL for light mode.
+      - name: position_display_name
+        description: Display name for the player's position.
+      - name: position_id
+        description: Underdog position UUID.
+      - name: position_name
+        description: Position abbreviation or name.
+      - name: sport_id
+        description: Underdog sport UUID.
+      - name: team_id
+        description: Underdog team UUID.
+      - name: slate_id
+        description: Underdog slate UUID (landing helper column).
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

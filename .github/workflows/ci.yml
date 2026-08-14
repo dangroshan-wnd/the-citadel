@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17.10-bookworm
+        env:
+          POSTGRES_DB: the_citadel_ci
+          POSTGRES_USER: the_citadel
+          POSTGRES_PASSWORD: the_citadel
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U the_citadel -d the_citadel_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DBT_POSTGRES_HOST: 127.0.0.1
+      DBT_POSTGRES_PORT: "5432"
+      DBT_POSTGRES_USER: the_citadel
+      DBT_POSTGRES_PASSWORD: the_citadel
+      DBT_POSTGRES_DB: the_citadel_ci
+      DBT_POSTGRES_SCHEMA: dbt_ci
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.10.7"
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Install development dependencies
+        run: |
+          uv venv --python 3.12
+          uv pip install -r requirements-dev.txt
+
+      - name: Install dbt packages
+        run: uv run --no-project dbt deps --profiles-dir .
+
+      - name: Parse dbt project
+        run: uv run --no-project dbt parse --profiles-dir . --no-partial-parse
+
+      - name: Compile dbt project
+        run: uv run --no-project dbt compile --profiles-dir .

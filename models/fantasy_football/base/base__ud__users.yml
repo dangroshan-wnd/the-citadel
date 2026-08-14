@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: base__ud__users
+    description: Underdog users from draft responses in landing. One row per user.
+    columns:
+      - name: id
+        description: Underdog user UUID.
+      - name: username
+        description: Underdog display username.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

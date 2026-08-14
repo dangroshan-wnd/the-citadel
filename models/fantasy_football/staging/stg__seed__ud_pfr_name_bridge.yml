@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg__seed__ud_pfr_name_bridge
+    description: Staged Underdog-to-PFR player name bridge from base. One row per UD player name.
+    columns:
+      - name: ud_player
+        description: Player name as shown on Underdog.
+        data_tests:
+          - unique
+      - name: pfr_player
+        description: Matching player name on Pro Football Reference, when mapped.
+      - name: player_join_key
+        description: Normalized join key used to link UD and PFR player records.
+        data_tests:
+          - unique

@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg__ud__teams
+    description: Staged Underdog teams from base. One row per team_id.
+    columns:
+      - name: team_id
+        description: Underdog team UUID.
+        data_tests:
+          - unique
+          - not_null
+      - name: abbr
+        description: Team abbreviation.
+      - name: dark_image_url
+        description: Team image URL for dark mode.
+      - name: icon_url
+        description: Team icon URL.
+      - name: light_image_url
+        description: Team image URL for light mode.
+      - name: lobby_title
+        description: Display title in lobby.
+      - name: team_name
+        description: Full team name.
+      - name: primary_color_dark_mode
+        description: Primary brand color for dark mode.
+      - name: primary_color_light_mode
+        description: Primary brand color for light mode.
+      - name: primary_text_color_dark_mode
+        description: Primary text color for dark mode.
+      - name: primary_text_color_light_mode
+        description: Primary text color for light mode.
+      - name: season_record
+        description: Season win-loss record string.
+      - name: secondary_color_dark_mode
+        description: Secondary brand color for dark mode.
+      - name: secondary_color_light_mode
+        description: Secondary brand color for light mode.
+      - name: secondary_text_color_dark_mode
+        description: Secondary text color for dark mode.
+      - name: secondary_text_color_light_mode
+        description: Secondary text color for light mode.
+      - name: seed
+        description: Playoff seed, if applicable.
+      - name: short_name
+        description: Short team name.
+      - name: sport_id
+        description: Underdog sport UUID.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

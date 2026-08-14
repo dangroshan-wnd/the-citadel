@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg__pfr__completed_season_schedules
+    description: Staged PFR completed season schedules from base. One row per game_id.
+    columns:
+      - name: game_id
+        description: PFR game identifier (date + home team abbr).
+        data_tests:
+          - unique
+      - name: season
+        description: NFL season year.
+        data_tests:
+          - not_null
+      - name: week_label
+        description: Raw week label from PFR, including playoff labels such as WildCard and SuperBowl.
+      - name: week_num
+        description: Integer regular-season week number; null for playoff rounds.
+      - name: game_date
+        description: Game date.
+        data_tests:
+          - not_null
+      - name: home_team
+        description: Full home team name.
+      - name: home_abv
+        description: PFR URL abbreviation for the home team (Washington Football Team normalized to was).
+      - name: away_team
+        description: Full away team name.
+      - name: away_abv
+        description: PFR URL abbreviation for the away team (Washington Football Team normalized to was).
+      - name: boxscore_url
+        description: URL to the PFR box score page.
+      - name: winner
+        description: Full name of the winning team.
+      - name: loser
+        description: Full name of the losing team.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

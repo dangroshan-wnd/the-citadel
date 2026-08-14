@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: draft_picks
+    description: >
+      Pick-level fact table combining Underdog draft, entry, player, team,
+      slate, and user context. One row per selected player pick.
+    config:
+      tags: ['lightdash']
+    columns:
+      - name: slate_id
+        description: Underdog slate UUID associated with the draft.
+      - name: draft_id
+        description: Underdog draft UUID; use distinct values when counting drafts.
+        config:
+          meta:
+            metrics:
+              draft_count:
+                type: count_distinct
+                label: Draft Count
+                description: Number of unique drafts.
+      - name: draft_entry_id
+        description: Underdog draft entry UUID for the roster making the pick.
+      - name: pick_id
+        description: Underdog draft entry pick UUID.
+        data_tests:
+          - unique
+      - name: appearance_id
+        description: Underdog appearance UUID for the selected player.
+      - name: player_id
+        description: Underdog player UUID for the selected player.
+      - name: team_id
+        description: Underdog team UUID for the selected player's team.
+      - name: slate_name
+        description: Slate display title from Underdog.
+      - name: slate_season
+        description: NFL season year extracted from slate_name (e.g. 2024, 2025).
+      - name: is_full_season_slate
+        description: Whether the slate is a full-season slate.
+      - name: draft_at
+        description: Draft start timestamp (UTC).
+      - name: draft_type
+        description: Draft speed type (e.g. slow, fast).
+      - name: entry_count
+        description: Number of entries in the draft.
+      - name: round_count
+        description: Number of rounds in the draft, derived from total picks and entry count.
+      - name: place
+        description: Final placement of the draft entry, if settled.
+      - name: payout
+        description: Payout amount for the draft entry.
+      - name: pick_order
+        description: Draft pick order position for the entry.
+      - name: user_id
+        description: Underdog user UUID for the entry owner.
+      - name: username
+        description: Underdog display username for the entry owner.
+      - name: pick_created_at
+        description: Timestamp when the pick was created (UTC).
+      - name: pick_number
+        description: Overall pick number in the draft.
+      - name: pick_round_number
+        description: Draft round in which the player was selected.
+      - name: team_name
+        description: Full team name for the selected player.
+      - name: player_name
+        description: Display name for the selected player.
+      - name: player_join_key
+        description: Normalized join key linking Underdog and PFR player names.
+      - name: position_name
+        description: Position abbreviation or name for the selected player.
+      - name: projection_adp
+        description: Projected average draft position at the time of the pick.
+      - name: projection_points
+        description: Projected points at the time of the pick.
+

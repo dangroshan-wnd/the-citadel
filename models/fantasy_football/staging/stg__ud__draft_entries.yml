@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg__ud__draft_entries
+    description: Staged Underdog draft entries from base. One row per draft entry.
+    columns:
+      - name: draft_entry_id
+        description: Underdog draft entry UUID.
+        data_tests:
+          - unique
+          - not_null
+      - name: draft_id
+        description: Underdog draft UUID.
+        data_tests:
+          - not_null
+      - name: user_id
+        description: Underdog user UUID for the entry owner.
+      - name: entry_auto_pick
+        description: Auto-pick setting for the entry (e.g. off, system).
+      - name: pick_order
+        description: Draft pick order position for the entry.
+      - name: place
+        description: Finish place for the entry, if settled.
+      - name: entry_points
+        description: Total points for the entry, if settled.
+      - name: payout
+        description: Entry payout amount.
+      - name: payout_text
+        description: Display text for entry payout, if provided.
+      - name: share_link
+        description: Share link for the entry, if provided.
+      - name: entry_title
+        description: Optional entry title.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

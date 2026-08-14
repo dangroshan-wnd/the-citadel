@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: base__ud__draft_entries
+    description: Draft entries data from Underdog API. One row per draft entry.
+    columns:
+      - name: id
+        description: Underdog draft entry UUID.
+      - name: auto_pick
+        description: Auto-pick setting for the entry (e.g. off, system).
+      - name: payout
+        description: Entry payout amount.
+      - name: payout_text
+        description: Display text for entry payout, if provided.
+      - name: pick_order
+        description: Draft pick order position for the entry.
+      - name: place
+        description: Finish place for the entry, if settled.
+      - name: points
+        description: Total points for the entry, if settled.
+      - name: share_link
+        description: Share link for the entry, if provided.
+      - name: title
+        description: Optional entry title.
+      - name: user_id
+        description: Underdog user UUID for the entry owner.
+      - name: draft_id
+        description: Underdog draft UUID (landing helper column).
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

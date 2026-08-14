@@ -1,0 +1,271 @@
+version: 2
+
+models:
+  - name: box_scores
+    description: >
+      Player-level PFR box scores joined to completed season schedules and the
+      UD–PFR name bridge. One row per player appearance in a scheduled game.
+    config:
+      tags: ['lightdash']
+    columns:
+      - name: id
+        description: Surrogate key for season, week label, week number, and player name.
+        data_tests:
+          - unique
+        config:
+          meta:
+            metrics:
+              games_played:
+                type: count_distinct
+                label: Games Played
+                description: Number of distinct player-game appearances.
+                tags: ['agent']
+      - name: season
+        description: >
+          NFL season label from the schedule. Use for exact equality and
+          grouping; for season ranges, filter game_date using July 1 season
+          boundaries.
+      - name: week_label
+        description: Raw PFR week label, including playoff round names.
+      - name: week_num
+        description: Integer regular-season week number; null for playoff games.
+      - name: game_date
+        description: >
+          Game date from the box score. For range filters, NFL season YYYY
+          spans YYYY-07-01 through the day before (YYYY + 1)-07-01.
+      - name: player_name
+        description: Player display name from the PFR offense table.
+      - name: player_join_key
+        description: Normalized join key linking PFR and Underdog player names.
+      - name: player_position_name
+        description: Underdog position name for the player.
+        # Nulls likely indicate a gap in the PFR players source landing table.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: player_team_abbreviation
+        description: Canonical abbreviation for the NFL team the player represented in this game.
+      - name: player_team_name
+        description: Full canonical name of the NFL team the player represented in this game.
+      - name: player_team_name_short
+        description: Short canonical name of the NFL team the player represented in this game.
+      - name: opponent_team_abbreviation
+        description: Canonical abbreviation for the player's opponent in this game.
+      - name: opponent_team_name
+        description: Full canonical name of the player's opponent in this game.
+      - name: opponent_team_name_short
+        description: Short canonical name of the player's opponent in this game.
+      - name: pass_completions
+        description: Pass completions.
+        config:
+          meta:
+            metrics:
+              total_passing_completions:
+                type: sum
+                label: Total Passing Completions
+                description: Total passing completions across the selected player games.
+                tags: ['agent']
+              passing_completions_per_game:
+                type: average
+                label: Passing Completions Per Game
+                description: Average passing completions per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: pass_attempts
+        description: Pass attempts.
+        config:
+          meta:
+            metrics:
+              total_passing_attempts:
+                type: sum
+                label: Total Passing Attempts
+                description: Total passing attempts across the selected player games.
+                tags: ['agent']
+              passing_attempts_per_game:
+                type: average
+                label: Passing Attempts Per Game
+                description: Average passing attempts per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: pass_yards
+        description: Passing yards.
+        config:
+          meta:
+            metrics:
+              total_passing_yards:
+                type: sum
+                label: Total Passing Yards
+                description: Total passing yards across the selected player games.
+                tags: ['agent']
+              passing_yards_per_game:
+                type: average
+                label: Passing Yards Per Game
+                description: Average passing yards per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: pass_touchdowns
+        description: Passing touchdowns.
+        config:
+          meta:
+            metrics:
+              total_passing_touchdowns:
+                type: sum
+                label: Total Passing Touchdowns
+                description: Total passing touchdowns across the selected player games.
+                tags: ['agent']
+              passing_touchdowns_per_game:
+                type: average
+                label: Passing Touchdowns Per Game
+                description: Average passing touchdowns per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: pass_interceptions
+        description: Interceptions thrown.
+      - name: rush_attempts
+        description: Rushing attempts.
+        config:
+          meta:
+            metrics:
+              total_rushing_attempts:
+                type: sum
+                label: Total Rushing Attempts
+                description: Total rushing attempts across the selected player games.
+                tags: ['agent']
+              rushing_attempts_per_game:
+                type: average
+                label: Rushing Attempts Per Game
+                description: Average rushing attempts per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: rush_yards
+        description: Rushing yards.
+        config:
+          meta:
+            metrics:
+              total_rushing_yards:
+                type: sum
+                label: Total Rushing Yards
+                description: Total rushing yards across the selected player games.
+                tags: ['agent']
+              rushing_yards_per_game:
+                type: average
+                label: Rushing Yards Per Game
+                description: Average rushing yards per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: rush_touchdowns
+        description: Rushing touchdowns.
+        config:
+          meta:
+            metrics:
+              total_rushing_touchdowns:
+                type: sum
+                label: Total Rushing Touchdowns
+                description: Total rushing touchdowns across the selected player games.
+                tags: ['agent']
+              rushing_touchdowns_per_game:
+                type: average
+                label: Rushing Touchdowns Per Game
+                description: Average rushing touchdowns per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: receiving_targets
+        description: Receiving targets.
+        config:
+          meta:
+            metrics:
+              targets_per_game:
+                type: average
+                label: Targets Per Game
+                description: Average receiving targets per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: receptions
+        description: Receptions.
+        config:
+          meta:
+            metrics:
+              total_receptions:
+                type: sum
+                label: Total Receptions
+                description: Total receptions across the selected player games.
+                tags: ['agent']
+              receptions_per_game:
+                type: average
+                label: Receptions Per Game
+                description: Average receptions per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: receiving_yards
+        description: Receiving yards.
+        config:
+          meta:
+            metrics:
+              total_receiving_yards:
+                type: sum
+                label: Total Receiving Yards
+                description: Total receiving yards across the selected player games.
+                tags: ['agent']
+              receiving_yards_per_game:
+                type: average
+                label: Receiving Yards Per Game
+                description: Average receiving yards per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: receiving_touchdowns
+        description: Receiving touchdowns.
+        config:
+          meta:
+            metrics:
+              total_receiving_touchdowns:
+                type: sum
+                label: Total Receiving Touchdowns
+                description: Total receiving touchdowns across the selected player games.
+                tags: ['agent']
+              receiving_touchdowns_per_game:
+                type: average
+                label: Receiving Touchdowns Per Game
+                description: Average receiving touchdowns per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: scrimmage_yards
+        description: Rushing yards plus receiving yards.
+        config:
+          meta:
+            metrics:
+              total_scrimmage_yards:
+                type: sum
+                label: Total Scrimmage Yards
+                description: Total scrimmage yards across the selected player games.
+                tags: ['agent']
+              scrimmage_yards_per_game:
+                type: average
+                label: Scrimmage Yards Per Game
+                description: Average scrimmage yards per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: scrimmage_touchdowns
+        description: Rushing touchdowns plus receiving touchdowns.
+        config:
+          meta:
+            metrics:
+              total_scrimmage_touchdowns:
+                type: sum
+                label: Total Scrimmage Touchdowns
+                description: Total scrimmage touchdowns across the selected player games.
+                tags: ['agent']
+              scrimmage_touchdowns_per_game:
+                type: average
+                label: Scrimmage Touchdowns Per Game
+                description: Average scrimmage touchdowns per selected player game.
+                format: '0.0'
+                tags: ['agent']
+      - name: fumbles
+        description: Fumbles.
+      - name: fumbles_lost
+        description: Fumbles lost.
+      - name: is_home_team
+        description: True when the player's team was the home team for the game.
+      - name: is_regular_season
+        description: True when week_num is a regular-season week (1–18).

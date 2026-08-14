@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg__seed__pfr_team_abbreviation_map
+    description: Staged PFR team abbreviation map from base. One row per team name.
+    columns:
+      - name: team_name
+        description: Full NFL team name as used on Pro Football Reference.
+        data_tests:
+          - not_null
+      - name: url_abv
+        description: Team abbreviation used in PFR schedule and URL paths.
+        data_tests:
+          - not_null
+      - name: box_abv
+        description: Team abbreviation used in PFR box score tables.
+        data_tests:
+          - not_null

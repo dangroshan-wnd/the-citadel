@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: entries_weekly_fantasy_scoring
+    description: >
+      Weekly fantasy points per draft pick. Joins draft picks to player game
+      scoring for regular-season weeks in 2024 and later.
+    columns:
+      - name: id
+        description: Surrogate key for pick and week.
+        data_tests:
+          - unique
+      - name: draft_id
+        description: Underdog draft identifier.
+      - name: draft_entry_id
+        description: Underdog draft entry identifier.
+      - name: pick_id
+        description: Underdog draft entry pick identifier.
+      - name: draft_at
+        description: Timestamp when the draft was created.
+      - name: entry_count
+        description: Number of entries in the draft.
+      - name: place
+        description: Final placement for the draft entry.
+      - name: payout
+        description: Payout amount for the draft entry.
+      - name: pick_order
+        description: Pick order for the draft entry.
+      - name: username
+        description: Underdog username for the drafter.
+      - name: pick_number
+        description: Overall pick number in the draft.
+      - name: team_name
+        description: NFL team name for the drafted player.
+      - name: player_name
+        description: Player name from Underdog.
+      - name: player_join_key
+        description: Normalized join key linking PFR and Underdog player names.
+      - name: position_name
+        description: Drafted player position.
+      - name: season
+        description: NFL season year for the scored week.
+      - name: week_num
+        description: Integer NFL week number for the scored game.
+      - name: game_date
+        description: Date of the scored game.
+      - name: std_scoring_points_total
+        description: Total standard-scoring fantasy points for the pick in that week.

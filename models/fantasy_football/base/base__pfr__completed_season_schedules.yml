@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: base__pfr__completed_season_schedules
+    description: PFR completed season schedules from landing. One row per game.
+    columns:
+      - name: game_id
+        description: PFR game identifier (date + home team abbr), from landing helper column.
+      - name: season
+        description: NFL season year.
+      - name: week
+        description: Week label from PFR (regular-season number or playoff label).
+      - name: date
+        description: Game date.
+      - name: home_team
+        description: Full home team name.
+      - name: home_abbr
+        description: PFR URL abbreviation for the home team.
+      - name: away_team
+        description: Full away team name.
+      - name: away_abbr
+        description: PFR URL abbreviation for the away team.
+      - name: boxscore_url
+        description: URL to the PFR box score page.
+      - name: winner
+        description: Full name of the winning team.
+      - name: loser
+        description: Full name of the losing team.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

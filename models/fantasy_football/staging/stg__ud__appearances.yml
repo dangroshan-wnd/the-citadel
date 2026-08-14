@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg__ud__appearances
+    description: Staged Underdog appearances from base. One row per appearance_id.
+    columns:
+      - name: appearance_id
+        description: Underdog appearance UUID.
+        data_tests:
+          - unique
+          - not_null
+      - name: latest_news_item_updated_at
+        description: Timestamp of the latest news item for this appearance.
+      - name: lineup_status_id
+        description: Underdog lineup status UUID.
+      - name: match_id
+        description: Underdog match UUID.
+      - name: match_type
+        description: Match type (e.g. Game).
+      - name: player_id
+        description: Underdog player UUID.
+      - name: position_id
+        description: Underdog position UUID.
+      - name: score
+        description: Appearance score value.
+      - name: team_id
+        description: Underdog team UUID.
+      - name: projection_id
+        description: Underdog projection UUID.
+      - name: adp
+        description: Average draft position from projection.
+      - name: avg_weekly_points
+        description: Average weekly points from projection.
+      - name: points
+        description: Projected points from projection.
+      - name: position_rank
+        description: Position rank from projection.
+      - name: scoring_type_id
+        description: Underdog scoring type UUID.
+      - name: slate_id
+        description: Underdog slate UUID.
+        data_tests:
+          - not_null
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

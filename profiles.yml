@@ -1,0 +1,13 @@
+the_citadel:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DBT_POSTGRES_HOST', '127.0.0.1') }}"
+      port: "{{ env_var('DBT_POSTGRES_PORT', '5432') | int }}"
+      user: "{{ env_var('DBT_POSTGRES_USER', 'the_citadel') }}"
+      password: "{{ env_var('DBT_POSTGRES_PASSWORD', 'not-used-by-dbt-parse') }}"
+      dbname: "{{ env_var('DBT_POSTGRES_DB', 'the_citadel_dev') }}"
+      schema: "{{ env_var('DBT_POSTGRES_SCHEMA', 'dbt_dev') }}"
+      threads: "{{ env_var('DBT_THREADS', '4') | int }}"
+      connect_timeout: 10

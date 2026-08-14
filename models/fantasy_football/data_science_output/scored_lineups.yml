@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: scored_lineups
+    description: "Best-ball lineup assignments per pick and week, sourced from landing.data_science_output__scored_lineups via data_science_output__scored_lineups.py."
+    columns:
+      - name: id
+        description: ""
+        data_tests:
+          - unique
+      - name: week_num
+        description: Integer NFL week number for the scored game.
+

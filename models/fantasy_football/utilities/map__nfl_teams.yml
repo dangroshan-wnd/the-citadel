@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: map__nfl_teams
+    description: >
+      Cross-platform mapping of active NFL team names and abbreviations from
+      Underdog and Pro Football Reference. One row per Underdog team.
+    columns:
+      - name: team_abbreviation
+        description: Canonical team abbreviation, sourced from Underdog.
+        data_tests:
+          - unique
+          - not_null
+      - name: team_name
+        description: Canonical full team name, sourced from Underdog.
+        data_tests:
+          - not_null
+      - name: team_name_short
+        description: Canonical short team name, sourced from Underdog.
+        data_tests:
+          - not_null
+      - name: ud_abbreviation
+        description: Team abbreviation used by Underdog.
+        data_tests:
+          - not_null
+      - name: ud_team_name
+        description: Full team name used by Underdog.
+      - name: ud_team_name_short
+        description: Short team name used by Underdog.
+      - name: pfr_abbreviation
+        description: Team abbreviation used by Pro Football Reference.
+        data_tests:
+          - not_null
+      - name: pfr_team_name_short
+        description: Team name used by Pro Football Reference.

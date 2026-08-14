@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: base__pfr__box_scores
+    description: PFR box score player rows from landing. One row per player per game.
+    columns:
+      - name: game_id
+        description: PFR game identifier (landing helper column).
+      - name: player
+        description: Player display name from the PFR offense table.
+      - name: team
+        description: Team abbreviation as shown on the box score.
+      - name: date
+        description: Game date string as scraped from PFR (e.g. Thursday Sep 4, 2025).
+      - name: pass_cmp
+        description: Pass completions.
+      - name: pass_att
+        description: Pass attempts.
+      - name: pass_yds
+        description: Passing yards.
+      - name: pass_td
+        description: Passing touchdowns.
+      - name: pass_int
+        description: Interceptions thrown.
+      - name: rush_att
+        description: Rushing attempts.
+      - name: rush_yds
+        description: Rushing yards.
+      - name: rush_td
+        description: Rushing touchdowns.
+      - name: targets
+        description: Receiving targets.
+      - name: rec
+        description: Receptions.
+      - name: rec_yds
+        description: Receiving yards.
+      - name: rec_td
+        description: Receiving touchdowns.
+      - name: fumbles
+        description: Fumbles.
+      - name: fumbles_lost
+        description: Fumbles lost.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

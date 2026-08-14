@@ -1,0 +1,167 @@
+version: 2
+
+models:
+  - name: stg__agent_app__query_logs
+    description: >
+      Current staged agent query-run logs. One row per /ask request, keyed by
+      the application query ID with a historical fallback.
+    columns:
+      - name: query_run_id
+        description: Canonical query-run key using query_id when available.
+        data_tests:
+          - unique
+          - not_null
+      - name: timestamp_utc
+        description: UTC timestamp when the log record was written.
+      - name: query_id
+        description: Application query identifier; null only for older records.
+      - name: question
+        description: Natural-language question submitted to the agent.
+      - name: success
+        description: Whether the request completed successfully.
+      - name: row_count
+        description: Number of Lightdash result rows, null on failure.
+      - name: answer
+        description: Natural-language answer returned to the user.
+      - name: error_message
+        description: Top-level request error message.
+      - name: user_feedback
+        description: Free-text feedback supplied by the user.
+      - name: user_acceptance
+        description: Whether the user accepted the answer.
+      - name: input_tokens
+        description: Total OpenAI input tokens used by the request.
+      - name: output_tokens
+        description: Total OpenAI output tokens used by the request.
+      - name: total_tokens
+        description: Total OpenAI tokens used by the request.
+      - name: token_usage_by_stage
+        description: Complete planning and summarization token telemetry, including raw OpenAI usage payloads, stored as JSONB.
+      - name: planning_input_tokens
+        description: OpenAI input tokens used by planning.
+      - name: planning_cached_input_tokens
+        description: Planning input tokens served from the prompt cache.
+      - name: planning_cache_write_input_tokens
+        description: Planning input tokens written to the prompt cache.
+      - name: planning_uncached_input_tokens
+        description: Planning input tokens not served from the prompt cache.
+      - name: planning_output_tokens
+        description: OpenAI output tokens used by planning, including reasoning tokens.
+      - name: planning_reasoning_tokens
+        description: Planning output tokens used for model reasoning.
+      - name: planning_visible_output_tokens
+        description: Planning output tokens excluding reasoning tokens.
+      - name: planning_total_tokens
+        description: Total OpenAI tokens used by planning.
+      - name: planning_response_id
+        description: OpenAI response identifier for planning.
+      - name: planning_model
+        description: OpenAI model reported for planning.
+      - name: planning_service_tier
+        description: OpenAI service tier reported for planning.
+      - name: metric_routing_input_tokens
+        description: OpenAI input tokens used to select relevant metrics.
+      - name: metric_routing_cached_input_tokens
+        description: Metric-routing input tokens served from the prompt cache.
+      - name: metric_routing_cache_write_input_tokens
+        description: Metric-routing input tokens written to the prompt cache.
+      - name: metric_routing_uncached_input_tokens
+        description: Metric-routing input tokens not served from the prompt cache.
+      - name: metric_routing_output_tokens
+        description: OpenAI output tokens used by metric routing, including reasoning tokens.
+      - name: metric_routing_reasoning_tokens
+        description: Metric-routing output tokens used for model reasoning.
+      - name: metric_routing_visible_output_tokens
+        description: Metric-routing output tokens excluding reasoning tokens.
+      - name: metric_routing_total_tokens
+        description: Total OpenAI tokens used by metric routing.
+      - name: metric_routing_response_id
+        description: OpenAI response identifier for metric routing.
+      - name: metric_routing_model
+        description: OpenAI model reported for metric routing.
+      - name: metric_routing_service_tier
+        description: OpenAI service tier reported for metric routing.
+      - name: query_planning_input_tokens
+        description: OpenAI input tokens used to build the Lightdash query plan.
+      - name: query_planning_cached_input_tokens
+        description: Query-planning input tokens served from the prompt cache.
+      - name: query_planning_cache_write_input_tokens
+        description: Query-planning input tokens written to the prompt cache.
+      - name: query_planning_uncached_input_tokens
+        description: Query-planning input tokens not served from the prompt cache.
+      - name: query_planning_output_tokens
+        description: OpenAI output tokens used by query planning, including reasoning tokens.
+      - name: query_planning_reasoning_tokens
+        description: Query-planning output tokens used for model reasoning.
+      - name: query_planning_visible_output_tokens
+        description: Query-planning output tokens excluding reasoning tokens.
+      - name: query_planning_total_tokens
+        description: Total OpenAI tokens used by query planning.
+      - name: query_planning_response_id
+        description: OpenAI response identifier for query planning.
+      - name: query_planning_model
+        description: OpenAI model reported for query planning.
+      - name: query_planning_service_tier
+        description: OpenAI service tier reported for query planning.
+      - name: summarization_input_tokens
+        description: OpenAI input tokens used by summarization.
+      - name: summarization_cached_input_tokens
+        description: Summarization input tokens served from the prompt cache.
+      - name: summarization_cache_write_input_tokens
+        description: Summarization input tokens written to the prompt cache.
+      - name: summarization_uncached_input_tokens
+        description: Summarization input tokens not served from the prompt cache.
+      - name: summarization_output_tokens
+        description: OpenAI output tokens used by summarization, including reasoning tokens.
+      - name: summarization_reasoning_tokens
+        description: Summarization output tokens used for model reasoning.
+      - name: summarization_visible_output_tokens
+        description: Summarization output tokens excluding reasoning tokens.
+      - name: summarization_total_tokens
+        description: Total OpenAI tokens used by summarization.
+      - name: summarization_response_id
+        description: OpenAI response identifier for summarization.
+      - name: summarization_model
+        description: OpenAI model reported for summarization.
+      - name: summarization_service_tier
+        description: OpenAI service tier reported for summarization.
+      - name: compiled_sql
+        description: Backward-compatible compiled SQL for single-query analyses.
+      - name: query_trace
+        description: Complete versioned query trace retained as JSONB.
+      - name: trace_version
+        description: Query-trace schema version.
+      - name: trace_skill_name
+        description: Skill used to interpret the question.
+      - name: trace_stage
+        description: Final execution stage reached by the request.
+      - name: trace_status
+        description: Final trace status.
+      - name: trace_started_at_utc
+        description: UTC timestamp when trace collection began.
+      - name: raw_plan
+        description: Model-produced analysis plan stored as JSONB.
+      - name: resolved_plan
+        description: Default-resolved and grouped analysis plan stored as JSONB.
+      - name: lightdash_queries
+        description: Ordered Lightdash query execution traces for the analysis, stored as JSONB.
+      - name: lightdash_payload
+        description: Backward-compatible semantic query payload for single-query analyses.
+      - name: lightdash_query_uuid
+        description: Backward-compatible asynchronous UUID for single-query analyses.
+      - name: lightdash_response
+        description: Retained Lightdash terminal or error response as JSONB.
+      - name: trace_error_type
+        description: Python exception class recorded by the trace.
+      - name: trace_error_message
+        description: Error message recorded at the failing trace stage.
+      - name: trace_timings_ms
+        description: Per-stage timings stored as JSONB.
+      - name: lightdash_query_uuids
+        description: Ordered Lightdash query UUIDs for all queries in the analysis, stored as JSONB.
+      - name: metadata_source
+        description: Runtime source that produced the log.
+      - name: metadata_debug
+        description: Whether the request enabled debug output.
+      - name: metadata_latency_ms
+        description: End-to-end request latency in milliseconds.

@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg__ud__draft_entry_picks
+    description: Staged Underdog draft entry picks from base. One row per pick.
+    columns:
+      - name: pick_id
+        description: Underdog draft entry pick UUID.
+        data_tests:
+          - unique
+          - not_null
+      - name: draft_id
+        description: Underdog draft UUID.
+        data_tests:
+          - not_null
+      - name: draft_entry_id
+        description: Underdog draft entry UUID for the picking entry.
+        data_tests:
+          - not_null
+      - name: appearance_id
+        description: Underdog appearance UUID for the picked player.
+      - name: pick_created_at
+        description: Timestamp when the pick was created (UTC).
+      - name: pick_number
+        description: Overall pick number in the draft.
+      - name: pick_slot_id
+        description: Underdog pick slot UUID.
+      - name: pick_points
+        description: Actual points scored by the pick, if settled.
+      - name: projection_adp
+        description: Projected average draft position at time of pick.
+      - name: projection_average
+        description: Projected average value at time of pick, if available.
+      - name: projection_points
+        description: Projected points at time of pick.
+      - name: drafted_percentage
+        description: Drafted percentage at time of pick, if available.
+      - name: salary
+        description: Salary value for the pick, if applicable.
+      - name: swapped
+        description: Whether the pick was swapped.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

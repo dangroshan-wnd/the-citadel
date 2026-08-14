@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: landing
+    description: Raw JSONB tables populated by Python ingest scripts (not built by dbt).
+    schema: landing
+    tables:
+      - name: ud_drafts
+        description: Underdog draft metadata from ingest__ud__drafts.py
+      - name: ud_draft_entries
+        description: Underdog draft entries from ingest__ud__draft_entries.py
+      - name: ud_appearances
+        description: Underdog slate appearances from ingest__ud__appearances.py
+      - name: ud_players
+        description: Underdog players from ingest__ud__players.py
+      - name: ud_draft_entry_picks
+        description: Underdog draft picks from ingest__ud__draft_entry_picks.py
+      - name: ud_teams
+        description: Underdog teams from ingest__ud__teams.py
+      - name: ud_slates
+        description: Underdog slate metadata from ingest__ud__slates.py
+      - name: ud_users
+        description: Underdog users from draft responses (ingest__ud__draft_entries.py)
+      - name: pfr_active_teams
+        description: PFR active teams from ingest__pfr__active_teams.py
+      - name: pfr_completed_season_schedules
+        description: PFR season schedules from ingest__pfr__completed_season_schedules.py
+      - name: pfr_box_scores
+        description: PFR box scores from ingest__pfr__box_scores.py
+      - name: pfr_players
+        description: PFR player index from ingest__pfr__players.py
+      - name: data_science_output__scored_lineups
+        description: Best-ball lineup assignments from data_science_output__scored_lineups.py
+      - name: data_science_output__player_cohorts
+        description: Canonical player cohort exposure from data_science_output__player_cohorts.py
+      - name: agent_app_query_logs
+        description: >
+          Q&A agent query-run logs written by agent/logger.py. One JSONB payload
+          per /ask run. This table has only a payload column (no ingested_at).

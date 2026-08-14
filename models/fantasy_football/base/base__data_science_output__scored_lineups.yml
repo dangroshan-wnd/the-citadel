@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: base__data_science_output__scored_lineups
+    description: >
+      Best-ball lineup assignments from landing. One row per pick per week.
+      Incrementally upserts on pick_id + week_num for landing rows newer than
+      the latest ingested_at already in this table.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - pick_id
+            - week_num
+    columns:
+      - name: draft_entry_id
+        description: Underdog draft entry identifier.
+      - name: pick_id
+        description: Underdog draft entry pick identifier.
+      - name: season
+        description: NFL season year for the scored week.
+      - name: position_name
+        description: Drafted player position.
+      - name: week_num
+        description: Integer NFL week number for the scored game.
+      - name: std_scoring_points_total
+        description: Total standard-scoring fantasy points for the pick in that week.
+      - name: is_in_lineup
+        description: Whether the pick was assigned to a starting lineup slot for the week.
+      - name: lineup_slot
+        description: Assigned lineup slot (QB, RB1, Flex, Bench, etc.).
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

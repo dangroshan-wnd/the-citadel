@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: base__data_science_output__player_cohorts
+    description: >
+      Canonical player cohort exposure from landing. One row per user/season/
+      entry_count/cohort_size/round_scope/round_cutoff/cohort_key. Full rebuild
+      from landing so refresh-season deletes in the Python loader are reflected.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - slate_season
+            - user_id
+            - entry_count
+            - cohort_size
+            - round_scope
+            - round_cutoff
+            - cohort_key
+    columns:
+      - name: slate_season
+        description: Calendar year of the draft slate.
+      - name: user_id
+        description: Drafter identifier.
+      - name: username
+        description: Drafter display name.
+      - name: entry_count
+        description: Draft size filter used for this cohort (default 12).
+      - name: cohort_size
+        description: Number of players in the cohort (2 or 3).
+      - name: round_scope
+        description: Round filter mode; currently always 'through'.
+      - name: round_cutoff
+        description: Include picks where pick_round_number <= round_cutoff.
+      - name: cohort_key
+        description: Sorted player_ids joined with '|'.
+      - name: player_ids
+        description: Canonical ordered list of player_ids in the cohort.
+      - name: player_names
+        description: Player names in the same order as player_ids.
+      - name: positions
+        description: Positions in the same order as player_ids.
+      - name: nfl_teams
+        description: NFL team names in the same order as player_ids.
+      - name: draft_ids
+        description: Distinct draft_ids that contain this cohort.
+      - name: draft_count
+        description: Distinct drafts containing this cohort (numerator).
+      - name: total_drafts
+        description: Distinct full-season drafts for the user/season (denominator).
+      - name: exposure_percent
+        description: draft_count * 100.0 / total_drafts.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

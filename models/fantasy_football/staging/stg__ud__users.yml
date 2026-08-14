@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg__ud__users
+    description: Staged Underdog users from base. One row per user_id.
+    columns:
+      - name: user_id
+        description: Underdog user UUID.
+        data_tests:
+          - unique
+          - not_null
+      - name: username
+        description: Underdog display username.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

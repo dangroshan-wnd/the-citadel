@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: base__pfr__active_teams
+    description: PFR active team metadata from landing. One row per team.
+    columns:
+      - name: team_name
+        description: Team display name on Pro Football Reference.
+      - name: pfr_abbr
+        description: PFR team abbreviation used in URLs and schedules.
+      - name: url_slug
+        description: URL path slug for the team on PFR.
+      - name: full_name
+        description: Full team name as returned by PFR.
+      - name: first_season
+        description: First season the franchise appears in PFR history.
+      - name: last_season
+        description: Most recent season the franchise appears in PFR history.
+      - name: is_active
+        description: Whether the team is currently active.
+      - name: wins
+        description: All-time regular-season wins.
+      - name: losses
+        description: All-time regular-season losses.
+      - name: ties
+        description: All-time regular-season ties.
+      - name: av
+        description: Franchise leader in approximate value.
+      - name: passer
+        description: Franchise leader in passing.
+      - name: rusher
+        description: Franchise leader in rushing.
+      - name: receiver
+        description: Franchise leader in receiving.
+      - name: coaching
+        description: Franchise coaching leader, when provided.
+      - name: playoff_yrs
+        description: Number of playoff seasons.
+      - name: playoff_wins
+        description: All-time playoff wins.
+      - name: playoff_losses
+        description: All-time playoff losses.
+      - name: championships
+        description: Number of championships.
+      - name: super_bowls
+        description: Number of Super Bowl wins.
+      - name: conf_titles
+        description: Number of conference titles.
+      - name: div_titles
+        description: Number of division titles.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

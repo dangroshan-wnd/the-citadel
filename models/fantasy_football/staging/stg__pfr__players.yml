@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg__pfr__players
+    description: Staged PFR player index from landing. One row per PFR player URL.
+    columns:
+      - name: player_name
+        description: Player display name from PFR.
+        data_tests:
+          - not_null
+      - name: player_url
+        description: Unique PFR player-page URL.
+        data_tests:
+          - unique
+          - not_null
+      - name: player_position_name
+        description: Player position from PFR.
+      - name: from_year
+        description: First NFL season listed by PFR.
+      - name: to_year
+        description: Last NFL season listed by PFR.
+      - name: dob
+        description: Player date of birth.
+      - name: height
+        description: Player height as displayed by PFR.
+      - name: weight
+        description: Player weight as displayed by PFR.
+      - name: draft_info
+        description: PFR draft description.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

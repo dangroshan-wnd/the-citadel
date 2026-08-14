@@ -1,0 +1,50 @@
+name: the_citadel
+version: 1.0.0
+config-version: 2
+
+profile: the_citadel
+
+model-paths:
+  - models
+analysis-paths:
+  - analyses
+test-paths:
+  - tests
+seed-paths:
+  - seeds
+macro-paths:
+  - macros
+snapshot-paths:
+  - snapshots
+
+target-path: target
+clean-targets:
+  - target
+  - dbt_packages
+
+models:
+  the_citadel:
+    fantasy_football:
+      base:
+        +schema: base
+        +materialized: view
+      staging:
+        +schema: staging
+        +materialized: table
+      marts:
+        +schema: marts
+        +materialized: table
+      analytics:
+        +schema: analytics
+        +materialized: table
+      data_science_output:
+        +schema: data_science_output
+        +materialized: table
+      utilities:
+        +schema: utilities
+        +materialized: table
+
+seeds:
+  the_citadel:
+    fantasy_football:
+      +schema: seeds

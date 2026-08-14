@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: base__seed__pfr_team_abbreviation_map
+    description: PFR team abbreviation map from seed CSV. Maps team names to URL and box-score abbreviations.
+    columns:
+      - name: team_name
+        description: Full NFL team name as used on Pro Football Reference.
+      - name: url_abv
+        description: Team abbreviation used in PFR schedule and URL paths.
+      - name: box_abv
+        description: Team abbreviation used in PFR box score tables.

@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: draft_entry_placements
+    description: >
+      Draft-entry fact table combining Underdog draft, slate, user, and final
+      placement details. One row per draft entry.
+    config:
+      tags: ['lightdash']
+    columns:
+      - name: slate_id
+        description: Underdog slate UUID associated with the draft.
+      - name: draft_id
+        description: Underdog draft UUID associated with the entry.
+      - name: draft_entry_id
+        description: Underdog draft entry UUID.
+        data_tests:
+          - unique
+      - name: slate_name
+        description: Slate display title from Underdog.
+      - name: slate_season
+        description: NFL season year extracted from slate_name (e.g. 2024, 2025).
+      - name: draft_at
+        description: Draft start timestamp (UTC).
+      - name: draft_type
+        description: Draft speed type (e.g. slow, fast).
+      - name: entry_count
+        description: Number of entries in the draft.
+      - name: round_count
+        description: Number of rounds in the draft, derived from total picks and entry count.
+      - name: first_place_prize
+        description: Maximum entry payout observed for the draft.
+      - name: entry_fee
+        description: >
+          Inferred entry fee for 12-entry drafts, mapped from first_place_prize:
+          $20 to $3, $32 to $5, $64 to $10, and $195 to $25. Null for other
+          prize amounts and entry counts.
+        data_tests:
+          - accepted_values:
+              values: [3, 5, 10, 25]
+              quote: false
+      - name: place
+        description: Finish place for the entry, if settled.
+      - name: payout
+        description: Entry payout amount.
+      - name: pick_order
+        description: Draft pick order position for the entry.
+      - name: username
+        description: Underdog display username for the entry owner.
+

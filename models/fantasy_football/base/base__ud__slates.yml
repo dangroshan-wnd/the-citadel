@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: base__ud__slates
+    description: Underdog slate metadata from landing. One row per slate.
+    columns:
+      - name: id
+        description: Underdog slate UUID.
+      - name: best_ball
+        description: Whether the slate is a best ball contest format.
+      - name: contest_style_ids
+        description: JSON array of Underdog contest style UUIDs for the slate.
+      - name: cutoff_at
+        description: Slate entry cutoff timestamp (UTC).
+      - name: description
+        description: Slate description from Underdog.
+      - name: game_count
+        description: Number of games in the slate, when provided.
+      - name: lobby_hidden
+        description: Whether the slate is hidden in the lobby.
+      - name: rank
+        description: Slate display rank in the lobby.
+      - name: show_salaries
+        description: Whether salaries are shown for the slate.
+      - name: sport_id
+        description: Sport identifier (e.g. NFL).
+      - name: start_at
+        description: Slate start timestamp (UTC).
+      - name: swap_rankings
+        description: Whether swap rankings are enabled.
+      - name: title
+        description: Slate display title from Underdog.
+      - name: ingested_at
+        description: Timestamp when the landing row was ingested.

@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: base__seed__exposure_target_ranges
+    description: >
+      Exposure target groups and their minimum exposure thresholds from the
+      exposure target ranges seed. One row per exposure group.
+    columns:
+      - name: exposure_season
+        description: Season of the exposure target.
+        data_tests:
+          - not_null
+      - name: exposure_group
+        description: Letter grade identifying the exposure target group.
+        data_tests:
+          - unique
+          - not_null
+      - name: exposure_floor
+        description: Minimum target exposure rate for the group, expressed as a decimal.
+        data_tests:
+          - not_null
